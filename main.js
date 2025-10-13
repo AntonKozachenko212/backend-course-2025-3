@@ -7,7 +7,7 @@ program
   .name('lab3')
   .version('1.0')
   .requiredOption('-i, --input <path>', 'Input JSON file path')
-  .option('-o, --output', 'Write results to result.txt')
+  .option('-o, --output <path>', 'Write results to the txt file')
   .option('-d, --display', 'Display results on terminal')
   .option('-m, --mfo', 'Include MFO code in output')
   .option('-n, --normal', 'Only include records with COD_STATE === 1');
@@ -59,9 +59,9 @@ if (options.display) {
 
 if (options.output) {
   try {
-    fs.writeFileSync('result.txt', outputLines.join('\n'), 'utf8');
-    console.log("Results written to result.txt");
+    fs.writeFileSync(`${options.output}.txt`, outputLines.join('\n'), 'utf8');
+    console.log(`Results written to ${options.output}.txt`);
   } catch (err) {
-    console.error("Failed to write to result.txt:", err.message);
+    console.error(`Failed to write to ${options.output}.txt:`, err.message);
   }
 }
